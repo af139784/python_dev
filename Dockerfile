@@ -7,6 +7,7 @@ ENV PATH $PYTHON_ROOT/bin:$PATH
 ENV PYENV_ROOT $HOME/.pyenv
 RUN apt-get update && apt-get upgrade -y \
  && apt-get install -y \
+    sudo \
     git \
     make \
     build-essential \
@@ -51,7 +52,7 @@ RUN wget -O /tmp/chromedriver.zip http://chromedriver.storage.googleapis.com/`cu
 RUN unzip /tmp/chromedriver.zip chromedriver -d /usr/local/bin/
 
 # add user
-ENV USER_NAME=developer
+ENV USER_NAME=develop
 RUN echo "${USER_NAME} ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers.d/${USER_NAME}
 RUN chmod u+s /usr/sbin/useradd \
     && chmod u+s /usr/sbin/groupadd
