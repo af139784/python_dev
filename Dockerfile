@@ -58,6 +58,8 @@ RUN chmod u+s /usr/sbin/useradd \
     && chmod u+s /usr/sbin/groupadd
 
 COPY entrypoint.sh /entrypoint.sh
+RUN chmod +x /entrypoint.sh
+
 ENTRYPOINT ["/entrypoint.sh"]
 
 CMD ["bash"]
