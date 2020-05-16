@@ -1,5 +1,17 @@
 FROM ubuntu:xenial
 
+# Shift timezone to Asia/Tokyo.
+RUN apt update && apt install -y tzdata && apt clean && rm -rf /var/lib/apt/lists/*
+ENV TZ Asia/Tokyo
+
+# Set local to jp
+RUN apt-get update && apt-get install -y language-pack-ja && \
+    update-locale LANG=ja_JP.UTF-8 && rm -rf /var/lib/apt/lists/*
+ENV LANG ja_JP.UTF-8
+ENV LANGUAGE ja_JP:ja
+ENV LC_ALL ja_JP.UTF-8
+
+# Set Python
 ENV PYTHON_VERSION 3.7.7
 ENV HOME /usr
 ENV PYTHON_ROOT $HOME/local/python-$PYTHON_VERSION
